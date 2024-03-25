@@ -1,0 +1,53 @@
+#!/usr/bin/expect --
+source "test/expect_include"
+send_user "Building target program\n"
+exec make clean
+exec make all
+send "\nStarting target program\n" 
+spawn bin/class_roster
+set timeout 1;
+
+expect "select the operation";
+send "q\r"
+expect {
+    "Invalid functionality selection" { send_user "[set greenConsole]\nOperation selection user input validation working, todo 1 and 2\n $resetConsole\n"; }
+    eof { send_user $failedExit; exit 1; }
+    timeout { send_user $timeoutExit; exit 1;}
+}
+
+expect "select the operation";
+send "3\r";
+expect "index of student to be deleted\r"
+send "q\r"
+expect {
+    "integer within the range of current roster" { 
+        send_user "[set greenConsole]\nDeletion user input validation working, todo 3 $resetConsole\n"; 
+        send "1\r"; 
+        expect "enter to continue";
+        send "\r"; }
+    eof { send_user $failedExit; exit 1; }
+    timeout { send_user $timeoutExit; exit 1;}
+}
+
+set dbcheck 1;
+while { $dbcheck } {
+    expect {
+    "Database error" { send_user "[set greenConsole]\nMenu parameter check working, todo 4 $resetConsole\n"; set dbcheck 0; }
+    "Main menu:" 
+    { 
+        send_user "\nRe-attempting db failure mock\n"; 
+        send "1\r";
+        expect "enter to continue";
+        send "\r"
+        }
+    eof { send_user $failedExit; exit 1; }
+    timeout { send_user $timeoutExit; exit 1;}
+}
+}
+
+
+
+
+
+send_user "[set greenConsole]\nAll 4 todos delivered\n $resetConsole\n";
+exit 0; 

@@ -1,0 +1,150 @@
+mkdir -p bin obj obj/test obj/src obj/domain
+g++ -g --std=c++17 -c test/catch_amalgamated.cpp -o obj/test/catch_amalgamated.o
+g++ -g --std=c++17 -c test/test.cpp -o obj/test/test.o
+g++ -g --std=c++17 -c src/class_roster_data.cpp -o obj/src/class_roster_data.o
+g++ -g --std=c++17 -c src/class_roster_lib.cpp -o obj/src/class_roster_lib.o
+g++ -g --std=c++17 -c domain/date_time.cpp -o obj/domain/date_time.o
+g++ -g --std=c++17 -c domain/student.cpp -o obj/domain/student.o
+g++ -g --std=c++17 -c domain/students.cpp -o obj/domain/students.o
+g++ obj/test/catch_amalgamated.o obj/test/test.o                 obj/src/class_roster_data.o obj/src/class_roster_lib.o obj/domain/date_time.o obj/domain/student.o obj/domain/students.o                 -Wreturn-type -o test/test
+Randomness seeded to: 4172124042
+0. ggg shonia 47
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+test is a Catch2 v3.3.0 host application.
+Run with -? for options
+
+-------------------------------------------------------------------------------
+student tests
+  initiation
+-------------------------------------------------------------------------------
+test/test.cpp:37
+...............................................................................
+
+test/test.cpp:39: PASSED:
+  REQUIRE( giorgi.GetStudentInformation() == "0. giorgi shonia 47" )
+with expansion:
+  "0. giorgi shonia 47"
+  ==
+  "0. giorgi shonia 47"
+
+-------------------------------------------------------------------------------
+student tests
+  credits
+-------------------------------------------------------------------------------
+test/test.cpp:42
+...............................................................................
+
+test/test.cpp:47: PASSED:
+  REQUIRE( giorgi.Credits() == 5 )
+with expansion:
+  5 == 5
+
+-------------------------------------------------------------------------------
+student tests
+  inactivity
+-------------------------------------------------------------------------------
+test/test.cpp:50
+...............................................................................
+
+test/test.cpp:53: PASSED:
+  REQUIRE( giorgi.IsActive() == false )
+with expansion:
+  false == false
+
+-------------------------------------------------------------------------------
+student tests
+  residency
+-------------------------------------------------------------------------------
+test/test.cpp:56
+...............................................................................
+
+test/test.cpp:59: PASSED:
+  REQUIRE( giorgi.Residency() == ctch1330::Residency::kStateResident )
+with expansion:
+  1 == 1
+
+-------------------------------------------------------------------------------
+students body tests
+  test AddStudent()
+-------------------------------------------------------------------------------
+test/test.cpp:71
+...............................................................................
+
+test/test.cpp:73: PASSED:
+  REQUIRE( Students::GetStudentBodySize() == 2 )
+with expansion:
+  2 == 2
+
+test/test.cpp:76: PASSED:
+  REQUIRE( students[0].GetStudentInformation() == "0. giorgi shonia 47" )
+with expansion:
+  "0. giorgi shonia 47"
+  ==
+  "0. giorgi shonia 47"
+
+-------------------------------------------------------------------------------
+students body tests
+  test UpdateStudent()
+-------------------------------------------------------------------------------
+test/test.cpp:79
+...............................................................................
+
+test/test.cpp:84: PASSED:
+  REQUIRE( result == true )
+with expansion:
+  true == true
+
+test/test.cpp:88: PASSED:
+  REQUIRE( new_student.GetStudentInformation() == "1. masha shonia 17" )
+with expansion:
+  "1. masha shonia 17"
+  ==
+  "1. masha shonia 17"
+
+student id out of bounds
+test/test.cpp:94: PASSED:
+  REQUIRE( result3 == false )
+with expansion:
+  false == false
+
+-------------------------------------------------------------------------------
+students body tests
+  test GetStudentById()
+-------------------------------------------------------------------------------
+test/test.cpp:98
+...............................................................................
+
+test/test.cpp:102: PASSED:
+  REQUIRE( result == true )
+with expansion:
+  true == true
+
+test/test.cpp:103: PASSED:
+  REQUIRE( student.GetStudentInformation() == "0. giorgi shonia 47" )
+with expansion:
+  "0. giorgi shonia 47"
+  ==
+  "0. giorgi shonia 47"
+
+-------------------------------------------------------------------------------
+students body tests
+  test SearchStudentByName()
+-------------------------------------------------------------------------------
+test/test.cpp:106
+...............................................................................
+
+test/test.cpp:109: PASSED:
+  REQUIRE( students.size() == 1 )
+with expansion:
+  1 == 1
+
+test/test.cpp:110: PASSED:
+  REQUIRE( students[0].id == 1 )
+with expansion:
+  1 == 1
+
+===============================================================================
+All tests passed (13 assertions in 3 test cases)
+
+ *  Terminal will be reused by tasks, press any key to close it.
