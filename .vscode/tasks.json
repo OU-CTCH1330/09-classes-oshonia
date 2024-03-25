@@ -1,0 +1,93 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "Build current file",
+            "detail": "Build current file as executable with g++",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}",
+                "--std=c++17"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        },
+        {
+            "type": "shell",
+            "label": "Build program",
+            "detail": "Build program executable bin/lms with make build system",
+            "command": "make all",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+
+        {
+            "type": "shell",
+            "label": "Build test",
+            "detail": "Build test executable test/test",
+            "command": "clear; make test;",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+
+        {
+            "type": "shell",
+            "label": "Test all cases",
+            "detail": "Execute all Catch2 unit tests (fresh build included)",
+            "command": "clear; make test; test/test --success;",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+
+
+
+        {
+            "type": "shell",
+            "label": "Test an individual case",
+            "detail": "Execute individual unit test case (fresh build included)",
+            "command": "clear; make test; test/test [${input:testClass}] --success;",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+
+        {
+            "type": "shell",
+            "label": "Clean with make",
+            "detail": "Purge all build content",
+            "command": "make clean",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        }
+    ],
+
+    "inputs": [
+        {
+            "id": "testClass",
+            "description": "Traget class that test should run on",
+            "type": "pickString",
+            "default": "scratch",
+            "options": ["student", "students", "roster",  "scratch"]
+
+        }
+    ],
+
+    "version": "2.0.0"
+}
