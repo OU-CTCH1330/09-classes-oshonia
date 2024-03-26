@@ -45,7 +45,7 @@ TEST_CASE("individual student tests", "[student]")
 
 	SECTION("initiation")
 	{
-		REQUIRE( giorgi.GetStudentInformation() == "0. giorgi shonia 47" );
+		REQUIRE( giorgi.GetStudentInformation() == "0. giorgi shonia 48" );
 	}
 
 	SECTION("credits")
@@ -88,7 +88,7 @@ TEST_CASE("students body tests", "[students]")
 		REQUIRE( Students::GetStudentBodySize() == 2 );
 
 		Students students;
-		REQUIRE( students[0].GetStudentInformation() == "0. giorgi shonia 47" );
+		REQUIRE( students[0].GetStudentInformation() == "0. giorgi shonia 48" );
 	}	
 
 	// notice, this section tests update functionality twice. 
@@ -103,7 +103,7 @@ TEST_CASE("students body tests", "[students]")
 
 		Student new_student;
 		bool result2 = Students::GetStudentById(student_id, new_student);
-		REQUIRE( new_student.GetStudentInformation() == "1. masha shonia 17" );	// update was indeed successful
+		REQUIRE( new_student.GetStudentInformation() == "1. masha shonia 18" );	// update was indeed successful
 
 		// need to test a negative test
 		int student_body_size = Students::GetStudentBodySize();
@@ -120,7 +120,7 @@ TEST_CASE("students body tests", "[students]")
 		Student student;
 		bool result = Students::GetStudentById(0, student);
 		REQUIRE( result == true );
-		REQUIRE( student.GetStudentInformation() == "0. giorgi shonia 47" );
+		REQUIRE( student.GetStudentInformation() == "0. giorgi shonia 48" );
 	}
 
 	// search by name should be able to retrieve (all) matches to first and last name submitted
